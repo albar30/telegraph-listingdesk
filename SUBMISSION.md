@@ -10,8 +10,7 @@ official H2 website: https://hackathon.telegraphprotocol.com
 - **Mission:** 01 — Exchange (primary). The same checks also answer Mission 14
   (Web3 Native / DeFi: pre-trade token safety), but Mission 01 is the claim;
   Mission 14 is not claimed separately.
-- **Repo:** this directory (`~/workspace/hackathons/telegraph-season2/`) — push
-  to GitHub before submitting (see "What still needs the user").
+- **Repo:** https://github.com/albar30/telegraph-listingdesk — pushed 26 Nov 2026 (38 files, local commit 3d1be07). Local dir: `~/workspace/hackathons/telegraph-season2/`.
 - **Demo video:** record from `DEMO_SCRIPT.md` (2–5 min, screen recording).
 
 ## Status per rules §5/§8
