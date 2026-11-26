@@ -16,7 +16,7 @@ ask that hasn't happened. Update the bracketed parts after the paid run.
 > (x2, cross-checked), price, liquidity, fraud risk, gas — and returns a
 > signed risk memo with a cost line.
 >
-> Testnet only, $0.07/memo observed (7 paid asks). Repo + README: [LINK]
+> Testnet only, $0.07/memo observed (7 paid asks). Repo + README: https://github.com/albar30/telegraph-listingdesk
 > Docs: https://hackathon.telegraphprotocol.com/rules
 >
 > #TelegraphHackathon — building in public, prize-track entry.
@@ -36,7 +36,7 @@ ask that hasn't happened. Update the bracketed parts after the paid run.
 > evidence/ledger.jsonl. Cost line: $0.07 per memo (7 asks; liquidity skipped —
 > no pool address), capped $0.50/ask.
 >
-> Try it: [REPO LINK] — any ERC-20 on Base/ETH/Arb/Polygon/BSC.
+> Try it: https://github.com/albar30/telegraph-listingdesk — any ERC-20 on Base/ETH/Arb/Polygon/BSC.
 > @Telegraphprotoc
 
 ## Update 3 — Tutorial / lessons (post 30 Nov)
@@ -58,7 +58,7 @@ ask that hasn't happened. Update the bracketed parts after the paid run.
 > 4/ Cross-check: two miners on holder count (12.70M vs 13.06M) is
 > stronger evidence than one. Disagreement >25% costs points in my scorer.
 >
-> Full write-up + code: [REPO LINK]
+> Full write-up + code: https://github.com/albar30/telegraph-listingdesk
 > If you reproduce a Telegraph request with it, tell me — I'd love the
 > feedback before the 1 Dec deadline.
 
