@@ -1,0 +1,170 @@
+{
+  "app": "ListingDesk",
+  "mission": "01 Exchange — Telegraph Hackathon Season II (Apps & Agents)",
+  "network": "Telegraph testnet (devnode.telegraphprotocol.com); payments in test USDC only",
+  "transport": "apikey",
+  "paid": true,
+  "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "chain": "base",
+  "symbol": null,
+  "name": null,
+  "at": "2026-11-25T17:07:22.566Z",
+  "verdict": "DO_NOT_LIST",
+  "score": 25,
+  "findings": [
+    {
+      "rule": "audit-unavailable",
+      "points": -25,
+      "level": "fail",
+      "detail": "Contract audit could not be fetched; listing cannot be approved blind."
+    },
+    {
+      "rule": "sanctions-unknown",
+      "points": -10,
+      "level": "warn",
+      "detail": "Sanctions screen unavailable in this run; treat as unconfirmed, not as clean."
+    },
+    {
+      "rule": "holders-unknown",
+      "points": -15,
+      "level": "warn",
+      "detail": "Holder count could not be read from either miner."
+    },
+    {
+      "rule": "price-unknown",
+      "points": -10,
+      "level": "warn",
+      "detail": "No live price from the miner."
+    },
+    {
+      "rule": "liquidity-error",
+      "points": -10,
+      "level": "warn",
+      "detail": "Liquidity check errored; depth is unconfirmed."
+    },
+    {
+      "rule": "fraud-unknown",
+      "points": -5,
+      "level": "warn",
+      "detail": "Fraud-risk check unavailable in this run; unconfirmed, not clean."
+    }
+  ],
+  "checks": [
+    {
+      "check": "audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "miner": "GoPlus Security (id 200001)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 1015,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "Anjoman 400 from /engine/ask/200001: intent SMART_CONTRACT_AUDIT_GENERAL has no input schema, so params cannot be checked; send it as a free-form query",
+      "summary": null
+    },
+    {
+      "check": "sanctions",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "OFAC SDN Entity Screen (id 78021)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 1662,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "Anjoman 400 from /engine/ask/78021: Some inputs were not accepted. name: name is required (string); entity: unknown param \"entity\"; this intent takes: name",
+      "summary": null
+    },
+    {
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 6555,
+      "receiptHash": "0x95d0fc3cd931d02f9d33c2647aab611c765239adbfe42a6555a4d291d5eec0dc",
+      "signalHash": "0x5cfe2da203ca80a33b31f32e9fe9c049c8a31df769ed9551fd6cdea3c7134a59",
+      "error": null,
+      "summary": "{\"token\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"chain\":\"base\",\"holders_count\":12713652,\"token_symbol\":null}"
+    },
+    {
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "ChainWire Token Holder Count (id 7302)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 7861,
+      "receiptHash": "0xa6ef4e0ed9ef9cc29f9d19a300749ee7b5e45cad8f15343f2bc40728d9f83919",
+      "signalHash": "0xe354f07abf5e90820ae0a2ff11ad982cbd2285c177b772c1b6359dec28f75e69",
+      "error": null,
+      "summary": "{\"token\":\"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\",\"chain\":\"base\",\"holders_count\":13057392,\"token_symbol\":\"USDC\"}"
+    },
+    {
+      "check": "price",
+      "intent": "CRYPTO_PRICE_USD",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 1652,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "Anjoman 400 from /engine/ask/9002: Some inputs were not accepted. symbol: symbol is required (string)",
+      "summary": null
+    },
+    {
+      "check": "liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "miner": "VerifyWire Liquidity Depth (id 7373)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 2156,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "Anjoman 400 from /engine/ask/7373: Some inputs were not accepted. pool: pool is required (string); pair: unknown param \"pair\"; this intent takes: pool, chain; size: unknown param \"size\"; this intent takes: pool, chain",
+      "summary": null
+    },
+    {
+      "check": "fraud",
+      "intent": "FRAUD_RISK_GENERAL",
+      "miner": "Telegraph Sentinel Risk Intelligence (id 501)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 912,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "Anjoman 400 from /engine/ask/501: Some inputs were not accepted. subject: subject is required (string); address: unknown param \"address\"; this intent takes: subject; chain: unknown param \"chain\"; this intent takes: subject",
+      "summary": null
+    },
+    {
+      "intent": "GAS_PRICE_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 8170,
+      "receiptHash": "0x0010bee570a471bf020ff53bb35519c233a024e9735edbde3768cad73985b2cd",
+      "signalHash": "0x249e343aefb3c52e3958c24b8491c7198c3515e9783d447810a23741cfdcd161",
+      "error": null,
+      "summary": "{\"chain\":\"base\",\"gas_price_gwei\":0.006412825,\"transfer_fee_usd\":0.0002,\"as_of\":\"2026-11-25T17:07:19.090Z\"}"
+    }
+  ],
+  "cost": {
+    "totalUsd": 0.03,
+    "perAskUsd": 0.01,
+    "asks": 3,
+    "note": "Real Telegraph purchases on testnet (Anjoman escrow / x402 test USDC)."
+  },
+  "sha256": "d2357c058e63e779fb16db0aa755d552ee4f1b6b8bd7c4247b1b7743499118dd"
+}
