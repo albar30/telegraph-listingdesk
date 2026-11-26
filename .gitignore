@@ -1,0 +1,4 @@
+.env
+node_modules/
+# NOTE: evidence/ is intentionally committed — it is the submission proof
+# (real Telegraph requests, receipts and memos). Never put a key in it.
