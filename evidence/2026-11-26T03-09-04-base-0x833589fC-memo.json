@@ -1,0 +1,161 @@
+{
+  "app": "ListingDesk",
+  "mission": "01 Exchange — Telegraph Hackathon Season II (Apps & Agents)",
+  "network": "Telegraph testnet (devnode.telegraphprotocol.com); payments in test USDC only",
+  "transport": "direct",
+  "paid": false,
+  "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "chain": "base",
+  "symbol": "USDC",
+  "name": "USD Coin",
+  "at": "2026-11-26T03:09:04.541Z",
+  "verdict": "LIST_WITH_CONDITIONS",
+  "score": 65,
+  "findings": [
+    {
+      "rule": "proxy",
+      "points": -10,
+      "level": "warn",
+      "detail": "Proxy contract: logic can change after listing."
+    },
+    {
+      "rule": "owner-not-renounced",
+      "points": -5,
+      "level": "warn",
+      "detail": "Owner is 0x4fc7850364958d97b4d3f5a08f79db2493f8ca44 (not renounced)."
+    },
+    {
+      "rule": "sanctions-unknown",
+      "points": -10,
+      "level": "warn",
+      "detail": "Sanctions screen unavailable in this run; treat as unconfirmed, not as clean."
+    },
+    {
+      "rule": "liquidity-error",
+      "points": -10,
+      "level": "warn",
+      "detail": "Liquidity check errored; depth is unconfirmed."
+    }
+  ],
+  "checks": [
+    {
+      "check": "audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "miner": "GoPlus Security (id 200001)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 1702,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "honeypot=0 buy_tax=0% sell_tax=0% mintable=undefined proxy=1 holders=12223649"
+    },
+    {
+      "check": "sanctions",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "OFAC SDN Entity Screen (id 78021)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "unavailable-direct",
+      "latencyMs": 0,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "OFAC miner public endpoint returns its web app, not JSON; screening runs in paid transports (apikey/x402).",
+      "summary": null
+    },
+    {
+      "check": "holdersPrimary",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 2239,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "12,729,946 holders on base"
+    },
+    {
+      "check": "holdersCross",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "ChainWire Token Holder Count (id 7302)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 2008,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "13,057,392 holders (USDC)"
+    },
+    {
+      "check": "price",
+      "intent": "CRYPTO_PRICE_USD",
+      "miner": "TxLens (id 9002)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 959,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "$0.9998963843103043 (USDC)"
+    },
+    {
+      "check": "liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "miner": "VerifyWire Liquidity Depth (id 7373)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 6019,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "VerifyWire HTTP 409",
+      "summary": null
+    },
+    {
+      "check": "fraud",
+      "intent": "FRAUD_RISK_GENERAL",
+      "miner": "Telegraph Sentinel Risk Intelligence (id 501)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 1054,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "Low fraud risk. Risk score: 15/100, confidence: 0.92. Factors evaluated: VALID_EVM_ADDRESS_FORMAT."
+    },
+    {
+      "check": "gas",
+      "intent": "GAS_PRICE_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 1895,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "Base gas price: 0.006 gwei. A standard 21000-gas transfer costs about $0.0002 USD. Fee level: very low for a standard transfer on Base. The latest block (number 62360849) has a base fee of 0.005 gwei, which leaves a priority tip of about 0.0010 gwei, and it is 31.9% full with 57 transactions. Base is chain ID 8453 and pays gas in ETH. Observed at: 2026-11-26T03:09:05.435Z."
+    }
+  ],
+  "cost": {
+    "totalUsd": 0,
+    "perAskUsd": 0.01,
+    "asks": 0,
+    "note": "Direct mode: $0. Live answers from live miners, but NOT Telegraph purchases. Run with TELEGRAPH_TRANSPORT=apikey for the paid submission path."
+  },
+  "sha256": "9376beef252f15efd9bf1320681470d8b4a241675cbec2a836be1c6c3c995910"
+}
