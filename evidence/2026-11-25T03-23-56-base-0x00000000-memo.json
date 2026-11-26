@@ -1,0 +1,167 @@
+{
+  "app": "ListingDesk",
+  "mission": "01 Exchange — Telegraph Hackathon Season II (Apps & Agents)",
+  "network": "Telegraph testnet (devnode.telegraphprotocol.com); payments in test USDC only",
+  "transport": "direct",
+  "paid": false,
+  "token": "0x0000000000000000000000000000000000000000",
+  "chain": "base",
+  "symbol": null,
+  "name": null,
+  "at": "2026-11-25T03:23:56.947Z",
+  "verdict": "DO_NOT_LIST",
+  "score": 0,
+  "findings": [
+    {
+      "rule": "audit-unavailable",
+      "points": -25,
+      "level": "fail",
+      "detail": "Contract audit could not be fetched; listing cannot be approved blind."
+    },
+    {
+      "rule": "sanctions-unknown",
+      "points": -10,
+      "level": "warn",
+      "detail": "Sanctions screen unavailable in this run; treat as unconfirmed, not as clean."
+    },
+    {
+      "rule": "holders-too-few",
+      "points": -30,
+      "level": "fail",
+      "detail": "Only 0 holders — no real market yet."
+    },
+    {
+      "rule": "price-skipped",
+      "points": -5,
+      "level": "warn",
+      "detail": "No symbol, so no price check ran."
+    },
+    {
+      "rule": "liquidity-error",
+      "points": -10,
+      "level": "warn",
+      "detail": "Liquidity check errored; depth is unconfirmed."
+    },
+    {
+      "rule": "fraud-high",
+      "points": -40,
+      "level": "fail",
+      "detail": "Fraud risk score 95/100."
+    }
+  ],
+  "checks": [
+    {
+      "check": "audit",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 1647,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "GoPlus returned no record for this contract",
+      "summary": null
+    },
+    {
+      "check": "sanctions",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "OFAC SDN Entity Screen (id 78021)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "unavailable-direct",
+      "latencyMs": 0,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "OFAC miner public endpoint returns its web app, not JSON; screening runs in paid transports (apikey/x402).",
+      "summary": null
+    },
+    {
+      "check": "holdersPrimary",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 1508,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "TxLens HTTP 502",
+      "summary": null
+    },
+    {
+      "check": "holdersCross",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "ChainWire Token Holder Count (id 7302)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 1395,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "A holder count for 0x0000000000000000000000000000000000000000 on Base could not be read: the public index did not return one for this contract."
+    },
+    {
+      "check": "price",
+      "intent": "CRYPTO_PRICE_USD",
+      "miner": "TxLens (id 9002)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "skipped",
+      "latencyMs": 0,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "no symbol known for this token; price needs a symbol",
+      "summary": null
+    },
+    {
+      "check": "liquidity",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "error",
+      "latencyMs": 5751,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "VerifyWire HTTP 503",
+      "summary": null
+    },
+    {
+      "check": "fraud",
+      "intent": "FRAUD_RISK_GENERAL",
+      "miner": "Telegraph Sentinel Risk Intelligence (id 501)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 774,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "Address 0x0000000000000000000000000000000000000000 is identified as a high-risk entity (Null Address (Zero Transfer / Burn)). Immediate caution advised."
+    },
+    {
+      "check": "gas",
+      "intent": "GAS_PRICE_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "direct",
+      "paid": false,
+      "costUsd": 0,
+      "status": "answered",
+      "latencyMs": 1247,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": null,
+      "summary": "Base gas price: 0.006 gwei. A standard 21000-gas transfer costs about $0.0002 USD. Fee level: very low for a standard transfer on Base. The latest block (number 61933248) has a base fee of 0.005 gwei, which leaves a priority tip of about 0.0010 gwei, and it is 3.4% full with 12 transactions. Base is chain ID 8453 and pays gas in ETH. Observed at: 2026-11-25T03:23:57.691Z."
+    }
+  ],
+  "cost": {
+    "totalUsd": 0,
+    "perAskUsd": 0.01,
+    "asks": 0,
+    "note": "Direct mode: $0. Live answers from live miners, but NOT Telegraph purchases. Run with TELEGRAPH_TRANSPORT=apikey for the paid submission path."
+  },
+  "sha256": "da7946de3c358488bb132bacfb2674729e4e1d0d258296d3c95f96ecddd8c8f7"
+}
