@@ -1,0 +1,143 @@
+{
+  "app": "ListingDesk",
+  "mission": "01 Exchange — Telegraph Hackathon Season II (Apps & Agents)",
+  "network": "Telegraph testnet (devnode.telegraphprotocol.com); payments in test USDC only",
+  "transport": "apikey",
+  "paid": true,
+  "token": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "chain": "base",
+  "symbol": null,
+  "name": null,
+  "at": "2026-11-25T17:11:12.874Z",
+  "verdict": "LIST_WITH_CONDITIONS",
+  "score": 95,
+  "findings": [
+    {
+      "rule": "price-skipped",
+      "points": -5,
+      "level": "warn",
+      "detail": "No symbol, so no price check ran."
+    }
+  ],
+  "checks": [
+    {
+      "check": "audit",
+      "intent": "SMART_CONTRACT_AUDIT_GENERAL",
+      "miner": "GoPlus Security (id 200001)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 4438,
+      "receiptHash": "0xda6ce287deb78f965059a51b43609afde8a1917e9736f527b0e4b03ba6f7d458",
+      "signalHash": "0x1b5359eebfe01367e6fd203006d25b3ae121603888ce7cfdfa06b3268a3596a7",
+      "error": null,
+      "summary": "honeypot=undefined buy_tax=undefined% sell_tax=undefined% mintable=undefined proxy=undefined holders=?"
+    },
+    {
+      "check": "sanctions",
+      "intent": "SANCTIONS_SCREENING_MATCH_GENERAL",
+      "miner": "OFAC SDN Entity Screen (id 78021)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 6052,
+      "receiptHash": "0x0f04370d50cf81234027898bcce1c9cf9afe8824a7210c96b5de82b405581d1b",
+      "signalHash": "0x4b56e1808a3a068faba985261546fcac40c59b1447c67a6f5eabf686665f3219",
+      "error": null,
+      "summary": "{\"name\":\"0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913\",\"matched\":false,\"matches\":null,\"lists\":null,\"match_score\":null}"
+    },
+    {
+      "check": "holdersPrimary",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 6730,
+      "receiptHash": "0xac8c004a96f80c75cc4808f9e82cc83b10af72ed1e380ae6db7e6af2c63e4ca1",
+      "signalHash": "0x5f39b033544c3b39112262ae56de5b3aeaecb446366424ab0f66abf9ff734895",
+      "error": null,
+      "summary": "12,713,766 holders on base"
+    },
+    {
+      "check": "holdersCross",
+      "intent": "TOKEN_HOLDER_COUNT_GENERAL",
+      "miner": "ChainWire Token Holder Count (id 7302)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 5629,
+      "receiptHash": "0x0096d187ddf560e95c5939cbd1c5aa6e356ce5cb76a354bfc0ddbaeef42cd3c4",
+      "signalHash": "0x2b24d61137775d5cfa2b5ede92718632ac0bccc885aee1c754c7c407acca43e9",
+      "error": null,
+      "summary": null
+    },
+    {
+      "check": "price",
+      "intent": "CRYPTO_PRICE_USD",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "skipped",
+      "latencyMs": 0,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "no symbol known for this token; price needs a symbol",
+      "summary": null
+    },
+    {
+      "check": "liquidity",
+      "intent": "LIQUIDITY_DEPTH_VERIFY_GENERAL",
+      "miner": "VerifyWire Liquidity Depth (id 7373)",
+      "transport": "apikey",
+      "paid": false,
+      "costUsd": 0,
+      "status": "skipped",
+      "latencyMs": 0,
+      "receiptHash": null,
+      "signalHash": null,
+      "error": "paid liquidity intent needs a pool address (--pool 0x...); pair/size are not accepted",
+      "summary": null
+    },
+    {
+      "check": "fraud",
+      "intent": "FRAUD_RISK_GENERAL",
+      "miner": "Telegraph Sentinel Risk Intelligence (id 501)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 6331,
+      "receiptHash": "0xdaa753870bbe12da7a37d51e2bb5a42242d00a9954ff41c8d17a28cf4ea29c1f",
+      "signalHash": "0x80a4f314f6d8dac1ef45ca2eb6bf458aeb0ba909c39d576f7ecfdb3e422de4d9",
+      "error": null,
+      "summary": "Low fraud risk. Risk score: 15/100, confidence: 0.92. Factors evaluated: VALID_EVM_ADDRESS_FORMAT."
+    },
+    {
+      "check": "gas",
+      "intent": "GAS_PRICE_GENERAL",
+      "miner": "TxLens (id 9002)",
+      "transport": "apikey",
+      "paid": true,
+      "costUsd": 0.01,
+      "status": "answered",
+      "latencyMs": 6226,
+      "receiptHash": "0x955847cfdfc267e480a007c6c362cc1ef97f1bf165f001c470992c46397d39bb",
+      "signalHash": "0x8a010f9203bd400a03b9904b8a3c8a601f5a569b8c408a0b1ed1cc1d2eaf1177",
+      "error": null,
+      "summary": null
+    }
+  ],
+  "cost": {
+    "totalUsd": 0.06,
+    "perAskUsd": 0.01,
+    "asks": 6,
+    "note": "Real Telegraph purchases on testnet (Anjoman escrow / x402 test USDC)."
+  },
+  "sha256": "8bbb0f87e7be3d0d99d9905df5f73054694098b3bb9531982aa77004ede20329"
+}
