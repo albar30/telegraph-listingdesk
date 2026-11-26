@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ListingDesk — Telegraph Mission 01</title>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 860px; margin: 2rem auto; padding: 0 1rem; color: #111; }
+  h1 { font-size: 1.4rem; } .sub { color: #555; }
+  form { display: flex; gap: .5rem; flex-wrap: wrap; margin: 1rem 0; }
+  input, select, button { padding: .6rem; font-size: 1rem; }
+  input[type=text] { flex: 1; min-width: 280px; }
+  button { background: #111; color: #fff; border: 0; cursor: pointer; }
+  button:disabled { opacity: .5; }
+  .verdict { font-size: 1.3rem; font-weight: 700; padding: .8rem; margin: 1rem 0; }
+  .LIST { background: #dcfce7; } .LIST_WITH_CONDITIONS { background: #fef9c3; } .DO_NOT_LIST { background: #fecaca; }
+  table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+  td, th { border: 1px solid #ddd; padding: .4rem .6rem; text-align: left; font-size: .9rem; }
+  pre { background: #f6f6f6; padding: 1rem; overflow: auto; font-size: .8rem; }
+  .warn { background: #fff7ed; border: 1px solid #fdba74; padding: .8rem; }
+  code { background: #f0f0f0; padding: 0 .2rem; }
+</style>
+</head>
+<body>
+<h1>ListingDesk</h1>
+<p class="sub">Autonomous token-listing risk desk — Telegraph Hackathon Season II, <b>Mission 01 (Exchange)</b>.
+Buys ranked intelligence through Telegraph and returns a signed listing risk memo with a cost line. Testnet only.</p>
+<div class="warn">Default transport is <code>direct</code>: live answers from live miners, $0, <b>not</b> a Telegraph purchase.
+Set <code>TELEGRAPH_TRANSPORT=apikey</code> + an Anjoman key for the paid submission path.</div>
+<form id="f">
+  <input type="text" id="token" placeholder="Token contract 0x…" value="0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913" required>
+  <select id="chain"><option>base</option><option>ethereum</option><option>arbitrum</option><option>polygon</option><option>bsc</option></select>
+  <input type="text" id="pool" placeholder="Pool address (optional, for liquidity)">
+  <button type="submit" id="go">Run listing check</button>
+</form>
+<p>Try: <a href="#" onclick="document.getElementById('token').value='0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';return false">USDC on Base</a>
+· <a href="#" onclick="document.getElementById('token').value='0x0000000000000000000000000000000000000000';return false">invalid / empty address (failure case)</a></p>
+<div id="out"></div>
+<script>
+const out = document.getElementById('out');
+document.getElementById('f').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const go = document.getElementById('go'); go.disabled = true; go.textContent = 'Asking Telegraph…';
+  out.innerHTML = '<p>Buying intelligence from 8 Telegraph checks in parallel…</p>';
+  try {
+    const r = await fetch('/api/check', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: document.getElementById('token').value.trim(), chain: document.getElementById('chain').value, pool: document.getElementById('pool').value.trim() || null }) });
+    const m = await r.json();
+    if (m.error) throw new Error(m.error);
+    out.innerHTML =
+      `<div class="verdict ${m.verdict}">Verdict: ${m.verdict} — ${m.score}/100</div>
+       <p>Token <code>${m.token}</code> on ${m.chain} ${m.symbol ? `(${m.symbol})` : ''} · Transport <code>${m.transport}</code> ${m.paid ? '(PAID)' : '(direct, $0)'} · Telegraph cost <b>$${m.cost.totalUsd.toFixed(4)}</b> · Memo SHA-256 <code>${m.sha256}</code></p>
+       <h3>Findings</h3>
+       ${m.findings.length ? '<ul>' + m.findings.map(f => `<li><b>[${f.level}] ${f.rule} (${f.points})</b> — ${f.detail}</li>`).join('') + '</ul>' : '<p>None — every rule passed.</p>'}
+       <h3>Intelligence bought</h3>
+       <table><tr><th>Check</th><th>Intent</th><th>Miner</th><th>Paid</th><th>Cost</th><th>Status</th><th>Summary</th></tr>
+       ${m.checks.map(c => `<tr><td>${c.check}</td><td><code>${c.intent}</code></td><td>${c.miner}</td><td>${c.paid ? 'yes' : 'no'}</td><td>$${Number(c.costUsd).toFixed(4)}</td><td>${c.status}</td><td>${(c.summary || c.error || '').toString().slice(0, 140)}</td></tr>`).join('')}
+       </table>
+       <details><summary>Full memo JSON</summary><pre>${JSON.stringify(m, null, 2).replace(/</g, '&lt;')}</pre></details>`;
+  } catch (err) {
+    out.innerHTML = `<p style="color:#b91c1c">Error: ${err.message}</p>`;
+  } finally { go.disabled = false; go.textContent = 'Run listing check'; }
+});
+</script>
+</body>
+</html>
